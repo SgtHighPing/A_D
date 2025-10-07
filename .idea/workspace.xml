@@ -5,16 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33cd01ef-17b2-4873-b293-cdb3ec31a4ee" name="Changes" comment="1.0">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_list/liste_iterativ.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_list/dummy.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/dummy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_list/meineliste.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/meineliste.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_list/meineliste.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/liste_rekursiv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_list/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,6 +41,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="32ra9SBq9bOimXFUvwNSYKS4Zot" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,6 +52,8 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.dummy.executor": "Run",
+    "Python.liste_iterativ.executor": "Run",
+    "Python.liste_rekursiv.executor": "Run",
     "Python.meineliste.executor": "Run",
     "Python.tester.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -75,7 +86,8 @@
       <workItem from="1758260881767" duration="20000" />
       <workItem from="1758707874954" duration="5280000" />
       <workItem from="1759311935365" duration="9818000" />
-      <workItem from="1759744634483" duration="7276000" />
+      <workItem from="1759744634483" duration="9083000" />
+      <workItem from="1759826624408" duration="3928000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <option name="closed" value="true" />
@@ -85,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758181100365</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1.0">
+      <option name="closed" value="true" />
+      <created>1759814356514</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759814356514</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,8 +127,10 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/A_D$tester.coverage" NAME="tester Coverage Results" MODIFIED="1759749076088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
+    <SUITE FILE_PATH="coverage/A_D$tester.coverage" NAME="tester Coverage Results" MODIFIED="1759830485302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
     <SUITE FILE_PATH="coverage/A_D$meineliste.coverage" NAME="meineliste Coverage Results" MODIFIED="1759747648573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
     <SUITE FILE_PATH="coverage/A_D$dummy.coverage" NAME="dummy Coverage Results" MODIFIED="1759313431581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
+    <SUITE FILE_PATH="coverage/A_D$liste_rekursiv.coverage" NAME="liste_rekursiv Coverage Results" MODIFIED="1759830067819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
+    <SUITE FILE_PATH="coverage/A_D$liste_iterativ.coverage" NAME="liste_iterativ Coverage Results" MODIFIED="1759830389678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
   </component>
 </project>
