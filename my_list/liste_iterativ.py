@@ -41,8 +41,12 @@ class ListeI:
             return counter
 
     def __getitem__(self, index: int):
+        if type(index) is not int:
+            raise TypeError(f"Index muss ein Int sein und kein {type(index)}")
+        if index < 0:
+            raise ValueError("Index darf nicht negativ sein")
         if self._first is None:
-            raise IndexError("Index out of range")
+            raise IndexError("Index außerhalb der möglichen Reichweite")
         else:
             ich_bin = self._first
             counter = 0
@@ -51,7 +55,26 @@ class ListeI:
                     return ich_bin.value
                 ich_bin = ich_bin.next
                 counter+=1
-            raise IndexError("Index out of range")
+            raise IndexError("Index außerhalb der möglichen Reichweite")
+
+    def __setitem__(self, index: int, value: Any):
+        if type(index) is not int:
+            raise TypeError(f"Index muss ein Int sein und kein {type(index)}")
+        if index < 0:
+            raise ValueError("Index darf nicht negativ sein")
+        if self._first is None:
+            raise IndexError("Index außerhalb der möglichen Reichweite")
+        else:
+            ich_bin = self._first
+            counter = 0
+            while ich_bin is not None:
+                if counter == index:
+                    ich_bin.value = value
+                    return None
+                ich_bin = ich_bin.next
+                counter+=1
+            raise IndexError("Index außerhalb der möglichen Reichweite")
+
 
     def append(self, value: Any) -> None:
         if self._first is None:
@@ -62,6 +85,16 @@ class ListeI:
                 schaffner = schaffner.next
             schaffner.next = ListeI._Wagon(value)
 
+    def copy(self):
+        liste_copy = ListeI()
+        if self._first is None:
+            return liste_copy
+        else:
+            ich_bin = self._first
+            while ich_bin.next is not None:
+                liste_copy.append(ich_bin.value)
+                ich_bin = ich_bin.next
+            return liste_copy
 
 
 

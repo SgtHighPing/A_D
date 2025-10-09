@@ -52,3 +52,34 @@ print(f"105. Index der Listen gleich: {liste_r[105] == liste_i[105] == liste_p[1
 print(liste_r)
 print(liste_i)
 print(liste_p)
+
+liste_i[5] = "test"
+liste_r[5] = "test"
+liste_p[5] = "test"
+
+print(f"\nÄnderung der Listen am Index 5:")
+print(f"Länge der Listen gleich: {len(liste_r) == len(liste_i) == len(liste_p)}")
+print(f"Name der Listen gleich: {str(liste_r) == str(liste_i) == str(liste_p)}")
+print(f"5. Index der Listen gleich: {liste_r[5] == liste_i[5] == liste_p[5]}")
+
+
+print(liste_r)
+print(liste_i)
+print(liste_p)
+
+# x = liste_r[200]
+# x = liste_i[200]
+# x = liste_p[200]
+
+# x = liste_r["p"]
+# print(x)
+
+liste_r_c = liste_r.copy()
+liste_i_c = liste_i.copy()
+liste_p_c = liste_p.copy()
+
+print(liste_r_c)
+print(liste_i_c)
+print(liste_p_c)
+
+
