@@ -40,6 +40,19 @@ class ListeI:
                 counter+=1
             return counter
 
+    def __getitem__(self, index: int):
+        if self._first is None:
+            raise IndexError("Index out of range")
+        else:
+            ich_bin = self._first
+            counter = 0
+            while ich_bin is not None:
+                if counter == index:
+                    return ich_bin.value
+                ich_bin = ich_bin.next
+                counter+=1
+            raise IndexError("Index out of range")
+
     def append(self, value: Any) -> None:
         if self._first is None:
             self._first = ListeI._Wagon(value)
