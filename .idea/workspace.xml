@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="33cd01ef-17b2-4873-b293-cdb3ec31a4ee" name="Changes" comment="1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_list/liste_iterativ.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/liste_iterativ.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_list/liste_rekursiv.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/liste_rekursiv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_list/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +86,7 @@
       <workItem from="1759311935365" duration="9818000" />
       <workItem from="1759744634483" duration="9083000" />
       <workItem from="1759826624408" duration="3928000" />
-      <workItem from="1759987720918" duration="13499000" />
+      <workItem from="1759987720918" duration="14730000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <option name="closed" value="true" />
@@ -114,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759992572905</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="1.0">
+      <option name="closed" value="true" />
+      <created>1760008569592</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008569592</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

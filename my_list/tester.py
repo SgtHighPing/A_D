@@ -74,6 +74,8 @@ print(liste_p)
 # x = liste_r["p"]
 # print(x)
 
+
+
 liste_r_c = liste_r.copy()
 liste_i_c = liste_i.copy()
 liste_p_c = liste_p.copy()
