@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="33cd01ef-17b2-4873-b293-cdb3ec31a4ee" name="Changes" comment="1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_list/liste_iterativ.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/liste_iterativ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_list/liste_rekursiv.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/liste_rekursiv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_list/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_list/tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +64,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -86,7 +89,9 @@
       <workItem from="1759311935365" duration="9818000" />
       <workItem from="1759744634483" duration="9083000" />
       <workItem from="1759826624408" duration="3928000" />
-      <workItem from="1759987720918" duration="14730000" />
+      <workItem from="1759987720918" duration="14937000" />
+      <workItem from="1760348886605" duration="245000" />
+      <workItem from="1760510266138" duration="4804000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <option name="closed" value="true" />
@@ -120,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760008569592</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1.0">
+      <option name="closed" value="true" />
+      <created>1760333166699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760333166700</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,7 +155,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/A_D$tester.coverage" NAME="tester Coverage Results" MODIFIED="1760006892726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
+    <SUITE FILE_PATH="coverage/A_D$tester.coverage" NAME="tester Coverage Results" MODIFIED="1760512048900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
     <SUITE FILE_PATH="coverage/A_D$meineliste.coverage" NAME="meineliste Coverage Results" MODIFIED="1759747648573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
     <SUITE FILE_PATH="coverage/A_D$dummy.coverage" NAME="dummy Coverage Results" MODIFIED="1759313431581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />
     <SUITE FILE_PATH="coverage/A_D$liste_rekursiv.coverage" NAME="liste_rekursiv Coverage Results" MODIFIED="1759989783268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_list" />

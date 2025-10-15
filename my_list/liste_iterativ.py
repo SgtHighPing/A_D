@@ -44,7 +44,7 @@ class ListeI:
         if type(index) is not int:
             raise TypeError(f"Index muss ein Int sein und kein {type(index)}")
         if index < 0:
-            raise ValueError("Index darf nicht negativ sein")
+            index = len(self) + index
         if self._first is None:
             raise IndexError("Index außerhalb der möglichen Reichweite")
         else:
@@ -61,7 +61,7 @@ class ListeI:
         if type(index) is not int:
             raise TypeError(f"Index muss ein Int sein und kein {type(index)}")
         if index < 0:
-            raise ValueError("Index darf nicht negativ sein")
+            index = len(self) + index
         if self._first is None:
             raise IndexError("Index außerhalb der möglichen Reichweite")
         else:
@@ -91,7 +91,7 @@ class ListeI:
             return liste_copy
         else:
             ich_bin = self._first
-            while ich_bin.next is not None:
+            while ich_bin is not None:
                 liste_copy.append(ich_bin.value)
                 ich_bin = ich_bin.next
             return liste_copy
