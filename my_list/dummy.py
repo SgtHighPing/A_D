@@ -1,13 +1,8 @@
-from functools import lru_cache
-
-@lru_cache(maxsize=None)
-def fib(n):
-
-    if n == 1:
-        return 1
-    elif n == 2:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-
-print(fib())
+def crazyshit():
+    x = 2
+    ohoh = list()
+    while True:
+        ohoh.append(x)
+        x = x*2
+    print(ohoh)
+crazyshit()

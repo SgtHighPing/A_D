@@ -1,3 +1,4 @@
+from copy import deepcopy
 from typing import Any
 
 class ListeI:
@@ -6,6 +7,17 @@ class ListeI:
         def __init__(self, value: Any):
             self.next = None
             self.value = value
+
+    class _Iterator:
+        def __init__(self, first: Any):
+            self.temp = first
+
+        def __next__(self) -> Any:
+            if self.temp is not None:
+                v = self.temp.value
+                self.temp = self.temp.next
+                return v
+            raise StopIteration
 
     def __init__(self):
         self._first = None
@@ -27,6 +39,8 @@ class ListeI:
                     ich_bin = ich_bin.next
                 return mein_inhalt + repr(ich_bin.value) + "]"
 
+    def __iter__(self):
+        return self._Iterator(self._first)
 
     def __len__(self):
 
@@ -75,6 +89,28 @@ class ListeI:
                 counter+=1
             raise IndexError("Index außerhalb der möglichen Reichweite")
 
+    def unique_new(self):
+        neu = ListeI()
+        if self._first is None:
+            return neu
+
+        schaffner_alt = self._first
+        while schaffner_alt is not None:
+            wert = schaffner_alt.value
+            vorhanden = False
+            schaffner_neu = neu._first
+            while schaffner_neu is not None:
+                if schaffner_neu.value == wert:
+                    vorhanden = True
+                    break
+                schaffner_neu = schaffner_neu.next
+
+            if not vorhanden:
+                neu.append(wert)
+            schaffner_alt = schaffner_alt.next
+
+        return neu
+
 
     def append(self, value: Any) -> None:
         if self._first is None:
@@ -92,9 +128,8 @@ class ListeI:
         else:
             ich_bin = self._first
             while ich_bin is not None:
-                liste_copy.append(ich_bin.value)
+                liste_copy.append(deepcopy(ich_bin.value))
                 ich_bin = ich_bin.next
             return liste_copy
-
 
 

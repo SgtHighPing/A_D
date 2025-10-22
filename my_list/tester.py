@@ -45,6 +45,9 @@ for t in [None, 0, 0.0, 1 + 2j, True, "text", [1, 2, 3], (1, 2, 3), {1, 2, 3}, {
     liste_i.append(t)
     liste_p.append(t)
 
+
+
+
 print(f"\nListen mit den gängigen Datentypen:")
 print(f"Länge der Listen gleich: {len(liste_r) == len(liste_i) == len(liste_p)}")
 print(f"Namen der Listen gleich: {str(liste_r) == str(liste_i) == str(liste_p)}")
@@ -99,3 +102,33 @@ print(liste_p)
 print(liste_r_c)
 print(liste_i_c)
 print(liste_p_c)
+
+
+liste_i[-7][1] = 5
+print(f"Länge der Listen gleich: {len(liste_r) == len(liste_i) == len(liste_p)}")
+print(f"Namen der Listen gleich: {str(liste_r) == str(liste_i) == str(liste_p)}")
+print(liste_i)
+print(liste_r)
+print(liste_p)
+
+liste_i_u = ListeI()
+liste_i_u.append(1)
+liste_i_u.append(1)
+liste_i_u.append(1)
+liste_i_u.append(2)
+liste_i_u.append(2)
+liste_i_u.append(2)
+liste_i_u.append(2)
+liste_i_u.append(2)
+liste_i_u.append(3)
+liste_i_u.append(3)
+liste_i_u.append("test")
+liste_i_u.append("test")
+liste_i_u.append("test")
+
+print(liste_i_u)
+print(liste_i_u.unique_new())
+
+
+for e in liste_i_u:
+    print(e)
