@@ -1,135 +1,279 @@
-from copy import deepcopy
 from typing import Any
+import time, random
 
-class ListeI:
 
+class Liste:
     class _Wagon:
-        def __init__(self, value: Any):
+        def __init__(self, value):
             self.next = None
             self.value = value
 
-    class _Iterator:
-        def __init__(self, first: Any):
-            self.temp = first
+        def __repr__(self):
+            return repr(self.value)
 
-        def __next__(self) -> Any:
-            if self.temp is not None:
-                v = self.temp.value
-                self.temp = self.temp.next
-                return v
-            raise StopIteration
+    # ab hier die Listeninterna
 
     def __init__(self):
         self._first = None
+        self._last = None
 
-    def __str__(self) -> str:
+    def __contains__(self, item):  # nativer Support für den "in"-Operator (ohne Fallback auf iter oder getitem)
+        for elem in self:
+            if elem == item:
+                return True
+        return False
 
-        if self._first is None:
-            return "[]"
-        else:
-            mein_inhalt = "["
-            if self._first.next is None:
-                mein_inhalt = mein_inhalt + repr(self._first.value) + "]"
-                return mein_inhalt
-            else:
-                ich_bin = self._first.next
-                mein_inhalt = mein_inhalt + repr(ich_bin.value) + ", "
-                while ich_bin.next is not None:
-                    mein_inhalt = mein_inhalt + repr(ich_bin.value) +", "
-                    ich_bin = ich_bin.next
-                return mein_inhalt + repr(ich_bin.value) + "]"
+    def __iter__(self):  # Generator-Methode, nativer Support von Iteration via iter/next (ohne Fallback auf getitem)
+        wagon = self._first
+        while wagon is not None:
+            yield wagon.value
+            wagon = wagon.next
 
-    def __iter__(self):
-        return self._Iterator(self._first)
+    def __getitem__(self, index):  # indizierter lesender Zugriff
+        if type(index) is not int:
+            raise TypeError("Index muss ein int sein")
+        if index < 0 or self._first is None:  # index negativ oder Liste leer
+            raise IndexError("list index out of range")  # das ist die kopierte Meldung der Python-Liste
 
-    def __len__(self):
+        schaffner = self._first
+        while index > 0:
+            schaffner = schaffner.next
+            if schaffner is None:
+                raise IndexError("list index out of range")
+            index -= 1
+        return schaffner.value
 
+    def __len__(self) -> int:  # len
         if self._first is None:
             return 0
         else:
-            ich_bin = self._first
-            counter = 1
-            while ich_bin.next is not None:
-                ich_bin = ich_bin.next
-                counter+=1
-            return counter
-
-    def __getitem__(self, index: int):
-        if type(index) is not int:
-            raise TypeError(f"Index muss ein Int sein und kein {type(index)}")
-        if index < 0:
-            index = len(self) + index
-        if self._first is None:
-            raise IndexError("Index außerhalb der möglichen Reichweite")
-        else:
-            ich_bin = self._first
-            counter = 0
-            while ich_bin is not None:
-                if counter == index:
-                    return ich_bin.value
-                ich_bin = ich_bin.next
-                counter+=1
-            raise IndexError("Index außerhalb der möglichen Reichweite")
-
-    def __setitem__(self, index: int, value: Any):
-        if type(index) is not int:
-            raise TypeError(f"Index muss ein Int sein und kein {type(index)}")
-        if index < 0:
-            index = len(self) + index
-        if self._first is None:
-            raise IndexError("Index außerhalb der möglichen Reichweite")
-        else:
-            ich_bin = self._first
-            counter = 0
-            while ich_bin is not None:
-                if counter == index:
-                    ich_bin.value = value
-                    return None
-                ich_bin = ich_bin.next
-                counter+=1
-            raise IndexError("Index außerhalb der möglichen Reichweite")
-
-    def unique_new(self):
-        neu = ListeI()
-        if self._first is None:
-            return neu
-
-        schaffner_alt = self._first
-        while schaffner_alt is not None:
-            wert = schaffner_alt.value
-            vorhanden = False
-            schaffner_neu = neu._first
-            while schaffner_neu is not None:
-                if schaffner_neu.value == wert:
-                    vorhanden = True
-                    break
-                schaffner_neu = schaffner_neu.next
-
-            if not vorhanden:
-                neu.append(wert)
-            schaffner_alt = schaffner_alt.next
-
-        return neu
-
-
-    def append(self, value: Any) -> None:
-        if self._first is None:
-            self._first = ListeI._Wagon(value)
-        else:
             schaffner = self._first
+            counter = 1
             while schaffner.next is not None:
                 schaffner = schaffner.next
-            schaffner.next = ListeI._Wagon(value)
+                counter += 1
+            return counter
+
+    def __repr__(self):  # repr und str
+        if self._first is None:
+            return "[]"
+        ergebnis = repr(self._first)
+        schaffner = self._first
+        while schaffner.next is not None:
+            schaffner = schaffner.next
+            ergebnis += f", {repr(schaffner)}"
+        return f"[{ergebnis}]"
+
+    def __setitem__(self, index: int, wert: Any) -> None:
+        if type(index) is not int:
+            raise TypeError("Index muss ein int sein")
+        if index < 0 or self._first is None:  # index negativ oder Liste leer
+            raise IndexError("list index out of range")  # das ist die kopierte Meldung der Python-Liste
+        schaffner = self._first
+        while index > 0:
+            schaffner = schaffner.next
+            if schaffner is None:
+                raise IndexError("list index out of range")
+            index -= 1
+        schaffner.value = wert
+
+    def extend(self, iterable):
+        if not iterable:
+            return
+
+        if self._first is None:
+            it = iter(iterable)
+            try:
+                first = next(it)
+            except StopIteration:
+                return
+            self._first = Liste._Wagon(first)
+            self._last = self._first
+            for value in it:
+                self._last.next = Liste._Wagon(value)
+                self._last = self._last.next
+            return
+
+        for value in iterable:
+            self._last.next = Liste._Wagon(value)
+            self._last = self._last.next
+
+    def append(self, value: Any):
+        if self._first is None:
+            self._first = Liste._Wagon(value)
+            self._last = self._first
+        else:
+            self._last.next = Liste._Wagon(value)
+            self._last = self._last.next
 
     def copy(self):
-        liste_copy = ListeI()
-        if self._first is None:
-            return liste_copy
-        else:
-            ich_bin = self._first
-            while ich_bin is not None:
-                liste_copy.append(deepcopy(ich_bin.value))
-                ich_bin = ich_bin.next
-            return liste_copy
+        kopie = Liste()
+        for elem in self:
+            kopie.append(elem)
+        return kopie
 
+    def sort_bubble(self):
+        '''
+        Bubble sort
+        :return: nix, sortiert in-place
+        '''
+        swapped = True
+        while swapped:
+            swapped = False
+            schaffner1 = self._first
+            if schaffner1 is not None:
+                schaffner2 = schaffner1.next
+                while schaffner2 is not None:
+                    if schaffner1.value > schaffner2.value:
+                        schaffner1.value, schaffner2.value = schaffner2.value, schaffner1.value
+                        swapped = True
+                    schaffner1 = schaffner2
+                    schaffner2 = schaffner2.next
+
+    def sort_bubble_try(self):
+        '''
+        wie das "normale" Bubblesort, statt aber in jedem Schritt jeweils explizit zu prüfen, ob das Listenende
+        erreicht ist, wird stumpf immer weiter gemacht, bis ein Fehler geworfen wird. Das funktioniert auch
+        und spart ggf. Zeit (hier bei uns spart es ein ganz klein wenig Zeit im einstelligen Prozent-Bereich)
+        :return: nix, sortiert in-place
+        '''
+        swapped = True
+        while swapped:
+            swapped = False
+            schaffner1 = self._first
+            if schaffner1 is not None:
+                schaffner2 = schaffner1.next
+                try:
+                    while True:
+                        if schaffner1.value > schaffner2.value:
+                            schaffner1.value, schaffner2.value = schaffner2.value, schaffner1.value
+                            swapped = True
+                        schaffner1 = schaffner2
+                        schaffner2 = schaffner2.next
+                except (TypeError, AttributeError):
+                    pass
+
+    def sort_bubble_array(self):
+        '''
+        Bubblesort mit direkter Indizierung, so, als ob unsere Liste ein Array wäre
+        Dadurch kann man den Standard-Algorithmus direkt hier umsetzen
+        es wird funktionieren, es wird aber schrecklich langsam sein!!!
+        erfordert __getitem__ und __setitem__ damit die lesenden und schreibenden Zugriffe per Index möglich sind
+        :return: nix, sortiert in-place
+        '''
+        n = len(self)
+        swapped = True
+        while swapped:  # wurde im letzten Durchlauf getauscht? (auch das ist schon eine Optimierung)
+            swapped = False
+            for i in range(1, n):  # ein Durchlauf aller Paare
+                if self[i - 1] > self[i]:  # größeres vor kleinerem?
+                    self[i - 1], liste[i] = self[i], self[i - 1]  # tauschen
+                    swapped = True
+            n -= 1  # Optimierung (fertig sortierte Elemente am oberen Ende werden nicht erneut betrachtet)
+
+    def sort_quick_marco(self):
+        def quicksort(links, rechts):
+            if links is rechts: return
+            pivot = links.value  # Pivot
+            aktuell = links  # aktuell Untersuchter
+            vorgrenze = links  # Vorgänger von Obergrenze
+            grenze = links  # Oberster, der kleiner/gleich dem Pivot ist
+            while True:
+                aktuell = aktuell.next
+                if aktuell is rechts: break
+                if aktuell.value < pivot:
+                    vorgrenze = grenze
+                    grenze = grenze.next
+                    grenze.value, aktuell.value = aktuell.value, grenze.value
+            links.value, grenze.value = grenze.value, links.value
+            if grenze is not rechts:
+                vorgrenze = grenze
+                grenze = grenze.next
+            quicksort(links, vorgrenze)
+            quicksort(grenze, rechts)
+
+        quicksort(self._first, None)
+
+    def quicksort_inplace_chatgpt(self) -> None:
+        """Sortiert die Liste in-place mit QuickSort (arbeitet direkt auf den Wagons)."""
+
+        # Hilfsfunktion: partitioniert den Bereich [start, end)
+        def _partition(start: "ListeR._Wagon", end: "ListeR._Wagon | None") -> "ListeR._Wagon":
+            pivot_value = start.value
+            p = start  # letzte Position eines Elements < pivot
+            q = start.next  # läuft durch den Rest der Liste
+
+            while q is not end:
+                if q.value < pivot_value:
+                    p = p.next
+                    # Werte tauschen, nicht die Knoten selbst
+                    p.value, q.value = q.value, p.value
+                q = q.next
+
+            # Pivot an die richtige Stelle bringen
+            start.value, p.value = p.value, start.value
+            return p  # p zeigt jetzt auf den Pivot-Knoten an finaler Position
+
+        # Rekursive QuickSort-Funktion auf dem Bereich [start, end)
+        def _quicksort(start: "ListeR._Wagon | None", end: "ListeR._Wagon | None") -> None:
+            # 0 oder 1 Element im Bereich -> schon sortiert
+            if start is None or start is end or start.next is end:
+                return
+
+            pivot_node = _partition(start, end)
+            _quicksort(start, pivot_node)  # linker Teil
+            _quicksort(pivot_node.next, end)  # rechter Teil
+
+        # leere Liste oder 1 Element -> nichts zu tun
+        if self._first is None or self._first.next is None:
+            return
+
+        _quicksort(self._first, None)
+
+    def unique(self):
+        """
+        ©️Beesten
+        in-place, entfernt doppelt auftretende Elemente
+        :return: nichts, es wird dir originale Liste (self) verändert
+        """
+        schaffner = self._first
+        while schaffner is not None:
+            vorgaenger = schaffner
+            kontroletti = schaffner.next
+            while kontroletti is not None:
+                nachfolger = kontroletti.next
+                if kontroletti.value == schaffner.value:
+                    vorgaenger.next = nachfolger
+                else:
+                    vorgaenger = kontroletti
+                kontroletti = nachfolger
+            schaffner = schaffner.next
+        return
+
+
+if __name__ == '__main__':
+    n = 5000
+    l = []
+    li1 = Liste()
+
+
+    for i in range(n):
+        r = random.randint(0,n)
+        l.append(r)
+        li1.append(r)
+    li2 = li1.copy()
+    print("Befüllen fertig")
+    # assert str(l) == str(li1)
+    # assert str(l) == str(li2)
+
+    start = time.time()
+    l.sort()
+    print(f"Dauer PowerSort bei {n} Elementen: ", time.time()-start)
+    start = time.time()
+    li1.sort_quick_marco()
+    print(f"Dauer QuickSort Marco bei {n} Elementen: ", time.time()-start)
+    start = time.time()
+    li2.quicksort_inplace_chatgpt()
+    print(f"Dauer QuickSort ChatGPT bei {n} Elementen: ", time.time()-start)
+    li2.append(2)
 
