@@ -13,9 +13,12 @@ class Liste:
 
     # ab hier die Listeninterna
 
-    def __init__(self):
+    def __init__(self, iterable=None):
         self._first = None
         self._last = None
+        if iterable is not None:
+            self.extend_ohne_cheat(iterable)
+
 
     def __contains__(self, item):  # nativer Support für den "in"-Operator (ohne Fallback auf iter oder getitem)
         for elem in self:
@@ -98,6 +101,31 @@ class Liste:
             self._last.next = Liste._Wagon(value)
             self._last = self._last.next
 
+    def extend_ohne_cheat(self, iterable):
+        if not iterable:
+            return
+
+        if self._first is None:
+            it = iter(iterable)
+            try:
+                first_value = next(it)
+            except StopIteration:
+                return
+            self._first = Liste._Wagon(first_value)
+            current = self._first
+            for value in it:
+                current.next = Liste._Wagon(value)
+                current = current.next
+            return
+
+        current = self._first
+        while current.next is not None:
+            current = current.next
+
+        for value in iterable:
+            current.next = Liste._Wagon(value)
+            current = current.next
+
     def append(self, value: Any):
         if self._first is None:
             self._first = Liste._Wagon(value)
@@ -167,7 +195,7 @@ class Liste:
             swapped = False
             for i in range(1, n):  # ein Durchlauf aller Paare
                 if self[i - 1] > self[i]:  # größeres vor kleinerem?
-                    self[i - 1], liste[i] = self[i], self[i - 1]  # tauschen
+                    self[i - 1], self[i] = self[i], self[i - 1]  # tauschen
                     swapped = True
             n -= 1  # Optimierung (fertig sortierte Elemente am oberen Ende werden nicht erneut betrachtet)
 
@@ -198,7 +226,7 @@ class Liste:
         """Sortiert die Liste in-place mit QuickSort (arbeitet direkt auf den Wagons)."""
 
         # Hilfsfunktion: partitioniert den Bereich [start, end)
-        def _partition(start: "ListeR._Wagon", end: "ListeR._Wagon | None") -> "ListeR._Wagon":
+        def _partition(start: "Liste._Wagon", end: "Liste._Wagon | None") -> "Liste._Wagon":
             pivot_value = start.value
             p = start  # letzte Position eines Elements < pivot
             q = start.next  # läuft durch den Rest der Liste
@@ -260,8 +288,9 @@ if __name__ == '__main__':
     for i in range(n):
         r = random.randint(0,n)
         l.append(r)
-        li1.append(r)
+    li1.extend_ohne_cheat(l)
     li2 = li1.copy()
+    li2.extend_ohne_cheat([])
     print("Befüllen fertig")
     # assert str(l) == str(li1)
     # assert str(l) == str(li2)
